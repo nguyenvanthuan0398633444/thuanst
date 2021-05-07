@@ -1,0 +1,41 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "ログイン";
+   
+
+}
+
+<div class="container-fluid main">
+    <div class="login">
+        <form asp-controller="Account" asp-action="Login">
+            <div class="pass">
+                <div class="form-group input-box">
+                    <i class="far fa-user"></i>
+                    <input required  title="フィールドに入力してください ." asp-for="Email" type="email" class="far fa-user" id="email" placeholder="ユーザーネーム" autocomplete="off" >
+                </div>
+                <div class="form-group input-box ">
+                    <i class="fas fa-unlock-alt"></i>
+                    <input required title="フィールドに入力してください ." asp-for="Password" type="password" class="" id="pwd" placeholder="パスワード">
+                    <span class="eye" onclick="showPassword()">
+                        <i id="show" class="fas fa-eye"></i>
+                        <i id="hide" class="fas fa-eye-slash"></i>
+                    </span>
+                </div>
+            </div>
+            @if (ViewBag.Error != null)
+            {
+                <div style="width: 71%; margin: auto; color: red;font-size:0.75rem;">
+                    <span>
+                        ユーザーネーム あるい は パスワード は 間違います
+                    </span>
+                </div>
+            }
+            <div>
+                <button type="submit" class="login-btn">ログイン</button><br>
+                <label for="">パスワードをお忘れですか？</label>
+            </div>
+
+        </form>
+    </div>
+</div>

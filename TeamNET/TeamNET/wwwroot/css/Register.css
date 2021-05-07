@@ -1,0 +1,144 @@
+﻿body {
+    background-color: rgb(231, 231, 231);
+    margin-bottom:2em;
+}
+
+.main-register {
+    margin: auto;
+}
+.btn.back {
+    width: 6rem;
+    background-color: rgb(233, 98, 98);
+    margin: 2rem 0rem 0 0rem;
+    border-radius: 5rem;
+}
+.btn.back .fas{
+    margin:0 5px 0 0 ;
+}
+.fa-arrow-alt-left {
+    margin: 0rem 1rem 0 0;
+}
+
+.article {
+    height: auto;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 0;
+    box-shadow: 5px 5px 5px 5px rgba(99, 99, 99, 0.205);
+}
+
+    .article .article-top {
+        border-radius: 20px 20px 0 0;
+        width: 100%;
+        height: 220px;
+        background-image: url(../images/topHerad.jpg);
+        background-size: cover;
+    }
+
+.add-event {
+    width: 90%;
+    margin: auto;
+    position: relative;
+    top: 40%;
+    padding: 3rem;
+}
+
+/* form-group */
+.form-group {
+    margin: 0;
+}
+
+select#list-event {
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    border: none;
+    font-size: 1.2rem !important;
+    border-bottom: 2px solid rgb(122, 122, 122);
+    z-index: 9;
+}
+
+    select#list-event:focus {
+        outline: none;
+    }
+
+.item-event {
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    border: none;
+    font-size: 1.2rem !important;
+    border-bottom: 2px solid rgb(122, 122, 122);
+    z-index: 9;
+}
+
+    .item-event:focus {
+        outline: none;
+    }
+
+.form-group label {
+    position: relative;
+    bottom: -40px;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: red;
+    height: 1rem;
+}
+
+.show {
+    position: relative;
+    bottom: -10px !important;
+    font-size: 1rem !important;
+    color: rgb(47, 118, 209);
+    animation-duration: 3s;
+    font-weight: bold;
+}
+
+.fa-mouse-pointer {
+    margin: 0 0.5rem;
+}
+
+.item-btn {
+    display: flex;
+    justify-content: center;
+}
+
+    .item-btn .btn {
+        margin: 2rem 2rem 0 2rem;
+        width: 8rem;
+        border-radius: 10rem;
+        box-shadow: 2px 5px 5px 3px rgba(8, 8, 8, 0.205);
+    }
+
+    .item-btn i.fab.fa-telegram-plane {
+        margin-right: 0.5em;
+    }
+
+@media(max-width:768px){
+    .add-event {
+        width: 100%;
+        
+    }
+    .add-event {
+        padding: 1rem;
+    }
+    .btn.back{
+        margin:0;
+    }
+    .article{
+        margin-top:1em;
+        margin-bottom:0;
+    }
+    .article .article-top {
+        height: 150px;
+    }
+    .item-btn .btn {
+        margin: auto;
+        margin-top: 1rem;
+    }
+   
+}

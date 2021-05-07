@@ -1,0 +1,82 @@
+﻿@inject OJTDbContext context
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+@{
+    string userId = userManager.GetUserId(User);
+    var user = await userManager.FindByIdAsync(userId);
+    var roles = await userManager.GetRolesAsync(user);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/Register.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/lib/line-awesome/font-awesome-line-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/line-awesome/line-awesome/css/line-awesome.min.css" rel="stylesheet" />
+    <style>
+        .navbar-collapse.d-sm-inline-flex.flex-sm-row-reverse.collapse.show {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+<body>
+    <input type="hidden" name="name" value="@userId" id="UserId" />
+    <input type="hidden" name="name" value="@roles[0]" id="RoleName" />
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                @if (!roles.Contains("Student"))
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Student" asp-action="Index" style="color:deepskyblue; font-weight:600">
+                        学生の入力一覧
+                    </a>
+                }
+
+                else
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Student" asp-action="Details" asp-route-id="@userId" style="color:deepskyblue; font-weight:600">
+                        学生入力欄
+                    </a>
+                }
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" >
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <div class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><i style="font-size:33px;" class="fa fa-power-off"></i></a>
+                        </div>
+                        <div class="nav-item">
+                            <img src="~/img/@context.Users.ToList().Find(el => el.Id == userId).AvatarName" height="40" ; width="40" style="border-radius:10px" />
+                        </div>
+                        <div class="nav-item">
+                            <span style="font-size:20px;" class="nav-link text-dark text-uppercase" asp-area="" asp-controller="Home" asp-action="Index">こんにちは | @context.Users.ToList().Find(el => el.Id == userId).FullName</span>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @RenderBody()
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

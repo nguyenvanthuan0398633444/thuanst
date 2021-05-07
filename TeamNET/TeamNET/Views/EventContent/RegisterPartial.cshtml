@@ -1,0 +1,42 @@
+﻿@model TeamNET.ViewModels.EventContent.EventContentViewModel
+<a href="~/home/index" class="btn btn-danger back"><i class="fal fa-arrow-alt-left"></i>戻る</a>
+<div class="container article">
+    <div class="article-top"></div>
+    <form asp-action="Register" class="add-event">
+        <div class="form-group">
+            <select asp-for="EventId" asp-items="@(new SelectList(Model.Events, "EventId", "EventName"))" class="item-event" id="list-event">
+                <option selected value="" class="">選んでください</option>
+            </select> <br>
+            <span asp-validation-for="EventId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">学校生活での出来事</label>
+            <input asp-for="CommunityAbility" id="event" type="text" class="item-event" placeholder="">
+            <span asp-validation-for="CommunityAbility" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">自分の行動</label>
+            <input asp-for="ActionAbility" id="action" type="text" class="item-event" placeholder="">
+            <span asp-validation-for="ActionAbility" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">発揮した力</label>
+            <input asp-for="DemonstratedAbility" id="power" type="text" class="item-event " placeholder="">
+            <span asp-validation-for="DemonstratedAbility" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">伸びた能力</label>
+            <input asp-for="SelfDevelopment" id="ability" type="text" class="item-event" placeholder="">
+            <span asp-validation-for="SelfDevelopment" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">考えたこと</label>
+            <input asp-for="ThinkingAbility" id="thought" type="text" class="item-event" placeholder="">
+            <span asp-validation-for="ThinkingAbility" class="text-danger"></span>
+        </div>
+        <div class="item-btn">
+            <button class="btn btn-primary" type="submit"><i class="fab fa-telegram-plane"></i>登録 </button>
+            <a href="~/eventcontent/register" class="btn btn-danger"> キャンセル</a>
+        </div>
+    </form>
+</div>

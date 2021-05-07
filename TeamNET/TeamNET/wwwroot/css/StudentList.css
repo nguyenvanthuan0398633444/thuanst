@@ -1,0 +1,236 @@
+﻿.card-image {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid;
+    width: 20%;
+    height: 2.3rem;
+}
+
+.dropdown {
+    width: 20%;
+}
+
+.dropdown-toggle {
+    background-color: #fff;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    width: 100%;
+    text-align: left;
+}
+
+    .dropdown-toggle:focus {
+        box-shadow: none;
+    }
+
+.dropdown-menu {
+    background-color: #f8f9fa;
+    border: none;
+    width: 100%;
+}
+
+    .dropdown-menu a {
+        color: black;
+        text-decoration: none;
+    }
+
+.left {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.none-line {
+    border: none;
+    border-bottom: 1px solid;
+    color:gray;
+    width: 100%;
+}
+
+.top-name:focus {
+    outline: none;
+}
+
+.top-bar {
+    margin-top: 2vh;
+}
+
+.none-line:focus {
+    outline: none;
+}
+
+.top-name {
+    margin-top: 7px;
+}
+
+i.la-chart-bar {
+    color: rgb(17, 127, 179);
+    font-size: 2rem;
+}
+
+i.fa-search {
+    font-size: 1.5rem;
+    color: rgb(136, 136, 136);
+    margin: 0.75rem 0 0 -2rem;
+}
+
+.table-bot {
+    height: 13rem;
+}
+
+.dropdown-toggle::after {
+    color: #00bfff;
+    margin-left: 50%;
+}
+
+div#myTable_length {
+    float: right;
+}
+
+.odd {
+    text-align: center;
+    font-weight: 500;
+}
+
+.even {
+    text-align: center;
+    font-weight: 500;
+}
+
+.test {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+
+.table.dataTable thead .sorting_asc {
+    background-image: none;
+}
+
+.select2-container .select2-selection--multiple {
+    display: inline-block !important;
+    border: none !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: white;
+    border: none !important;
+    border-radius: 4px;
+    cursor: text;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+
+span.select2-results {
+    display: none;
+}
+
+span.select2-dropdown.select2-dropdown--below {
+    display: none !important;
+}
+
+
+span.select2.select2-container.select2-container--default.select2-container--below.select2-container--open:focus {
+    outline: auto;
+    margin-top: 2vh;
+}
+/*.top.row {
+    margin-bottom: 2vh;
+}*/
+/*span#hashtag-name {
+    position: relative;
+    top: 1rem;
+    left: 5rem;
+    color: #c2c3c3;
+    font-size:1.2em;
+}*/
+.hashtag_label {
+    position: relative;
+    top: 1.5vh;
+    left: 7em;
+    color: gray;
+}
+
+.hide {
+    opacity: 0;
+}
+
+a.left {
+    text-decoration: none;
+}
+.left.col-3.student-name {
+    position: relative;
+}
+input#studentName {
+    position: absolute;
+    bottom: 0;
+    width: 85%;
+}
+.row.col-9 {
+    position: relative;
+}
+div#hasdtag {
+    position: relative;
+}
+label.hashtag_label {
+    position: absolute;
+    left: 1rem;
+    top: 13px;
+}
+
+div#html-editor {
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #686868;
+}
+i.fa.fa-search {
+    font-size: 2rem;
+    padding-left: 10px;
+}
+.row.header {
+    width: 80%;
+}
+.main{
+    width:90%;
+}
+@media (min-width:768px) and (max-width: 1024px) {
+    .row.header {
+        width: 90%;
+    }
+    .main {
+        width: 100%;
+    }
+}
+@media screen  and (max-width: 768px) {
+    .row.header {
+        width: 100%;
+    }
+    .main {
+        width: 100%;
+    }
+    th {
+        font-size: 15px !important;
+    }
+   
+}
+@media screen and (max-width: 375px) {
+   body{
+       width: 400px;
+   }
+}

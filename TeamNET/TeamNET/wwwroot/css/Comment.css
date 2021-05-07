@@ -1,0 +1,268 @@
+﻿hr {
+    border-top: 2px solid;
+}
+
+.under {
+    width: 25%;
+    font-size: 1.5rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -2.2rem;
+    background-color: rgb(231, 231, 231);
+    z-index: 1;
+}
+
+    .under p {
+        text-align: center;
+    }
+/* .comment */
+.comment {
+    width: 70%;
+    margin: auto;
+    padding-top: 4rem;
+}
+
+.form-comment button:focus {
+    outline: none;
+}
+
+.comment p {
+    margin: 0;
+    word-break: break-all;
+}
+
+.avata-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: rgb(122, 122, 122);
+}
+
+.avata .Student {
+    background-color: rgb(56, 153, 243);
+    padding: 0 2px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.avata .Doctor {
+    background-color: burlywood;
+    padding: 0 2px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.avata .Teacher {
+    background-color: darkgrey;
+    padding: 0 2px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.avata .Guardian {
+    background-color: chocolate;
+    padding: 0 2px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.content-comment {
+    max-width: 60%;
+    background-color: rgb(167, 208, 241);
+    border-radius: 20px;
+    position: relative;
+    padding: 0.5em 2em;
+    box-shadow: 2px 5px 5px -2px rgba(8, 8, 8, 0.205);
+}
+/*comment-left */
+.comment-left {
+    margin: 0px;
+}
+
+    .comment-left .content-comment {
+        margin: 0 0 2em 2em;
+    }
+
+.triangle-left {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    border-top: 0.75rem solid transparent;
+    border-right: 1rem solid rgb(167, 208, 241);
+    border-bottom: 0.75rem solid transparent;
+    position: relative;
+    left: 35px;
+    bottom: -12px;
+}
+
+.triangle-left-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .triangle-left-top h5 {
+        color: rgb(14, 53, 180);
+    }
+
+.content-comment .conten-date {
+    font-size: 10px;
+    color: rgb(145, 145, 145);
+}
+
+.edit-delete {
+    font-size: 12px;
+    position: relative;
+    top: -5px;
+    right: -22px;
+    opacity: 0;
+}
+
+    .edit-delete i {
+        padding: 3px;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+.content-comment:hover .edit-delete {
+    opacity: 1;
+}
+/*/ end comment-left /*/
+.comment-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+div#comment {
+    max-height: 70vh;
+    overflow-y: auto;
+    width: 109%;
+    padding-right:2rem;
+
+}
+
+    div#comment::-webkit-scrollbar {
+        width: 7px;
+    }
+
+
+    div#comment::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgb(173, 173, 173);
+        border-radius: 10px;
+    }
+
+
+    div#comment::-webkit-scrollbar-thumb {
+        background: rgba(190, 190, 190, 0.979);
+        border-radius: 10px;
+    }
+
+
+        div#comment::-webkit-scrollbar-thumb:hover {
+            background: #a1a2a3;
+        }
+/*end scrollbar*/
+.triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 0.75rem solid transparent;
+    border-left: 1rem solid white;
+    border-bottom: 0.75rem solid transparent;
+    position: relative;
+    left: -35px;
+    bottom: -12px;
+}
+
+.comment-right .content-comment {
+    margin: 0 2em 2em 0;
+}
+/* comment input*/
+.form-comment {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+    .form-comment img {
+        border: 1px solid #fff;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+    }
+
+
+
+
+
+
+
+    .form-comment button {
+        background-color: #b3ecf8cf;
+        border: 1px solid #fff;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        margin-top: 10px;
+        color: #0072ff;
+        font-size: 2em;
+    }
+
+    .form-comment div {
+        width: 85%;
+    }
+
+.tox.tox-tinymce.tox-tinymce--toolbar-bottom {
+    width: 100%;
+}
+
+
+
+.emojionearea.mentiony-container.initial-size {
+    width: 98% !important;
+    height: 90px;
+    border-radius: 20px;
+    margin: 0 10px;
+}
+
+.pl0.col-xs-9.col-sm-9.col-md-9.col-lg-9 {
+    margin-left: 13px;
+}
+
+@media(max-width:500px) {
+    .comment {
+        width: 90%;
+    }
+
+    .triangle-right {
+        left: -4px;
+    }
+
+    .comment-right .content-comment {
+        margin: 0 0em 2em 0;
+    }
+
+    .comment-left .content-comment {
+        margin: 0 0 2em 0em;
+    }
+
+    .triangle-left {
+        left: 3px;
+    }
+}
+
+i.fas.fa-pen {
+    color: #ff8100;
+    background-color: #29eb734a;
+}
+
+i.far.fa-trash-alt {
+    color: #fd0404;
+    background-color: #29eb734a;
+}

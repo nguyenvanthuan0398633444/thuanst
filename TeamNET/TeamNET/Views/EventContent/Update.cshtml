@@ -1,0 +1,139 @@
+﻿@model EventContentViewModel
+@inject UserManager<ApplicationUser> userManager
+@inject OJTDbContext Context;
+
+@{ var user = ViewBag.User as ApplicationUser;
+    string userId = user.Id;
+    string avartar = user.AvatarName;
+    var roles = ViewBag.RolesUser as List<string>;
+    var isSuccess = ViewBag.IsSuccess == "true" ? true : false;
+    var isStudent = roles.Contains("Student") ? 1 : 0; }
+@{ ViewData["Title"] = "Update"; }
+<link href="~/css/jquery.mentiony.css" rel="stylesheet" />
+<link href="~/css/Comment.css" rel="stylesheet" />
+<link href="~/lib/EmojiArea/emojionearea.css" rel="stylesheet" />
+<style>
+    .emojionearea-editor.mentiony-content {
+        display: block;
+        height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100% !important;
+    }
+    div {
+        word-break: break-all;
+    }
+</style>
+<input type="hidden" name="name" value="@Model.StatusId" id="statusId"/>
+<div class="container">
+    <a asp-controller="Student" asp-action="Details" asp-route-studentId="@Model.StudentId" class="btn btn-danger back" a>
+        <i class="fas fa-arrow-left"></i>戻る
+    </a>
+</div>
+
+<div class="container article">
+    <div class="article-top"></div>
+    <form asp-action="Update" class="add-event">
+        @if (TempData["Message"] != null && isSuccess)
+        {
+            <h6 class="alert alert-success">@TempData["Message"]</h6> }
+        else if (TempData["Message"] != null)
+        {
+            <h6 class="alert alert-danger">@TempData["Message"]</h6>
+        }
+        <input hidden asp-for="EventContentId" id="EventContentId" class="form-control" />
+        <input hidden asp-for="StudentId" value="@Model.StudentId" class="form-control" />
+        <label asp-for="EventId" class="question">イベント選択</label>
+        <div class="form-group">
+
+            <select asp-for="EventId" class="item-event" id="list-event">
+                @if (Model.Events != null && Model.Events.Any())
+                {
+                    foreach (var e in Model.Events)
+                    {
+    <option value="@e.EventId" selected="@(e.EventId == Model.EventId)">@e.EventName</option>
+}
+}
+            </select>
+            <span asp-validation-for="EventId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">学校生活での出来事</label>
+            <input asp-for="CommunityAbility" id="event" type="text" class="item-event">
+            <span asp-validation-for="CommunityAbility" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">自分の行動</label>
+            <input asp-for="ActionAbility" id="action" type="text" class="item-event">
+            <span asp-validation-for="ActionAbility" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">発揮した力</label>
+            <input asp-for="DemonstratedAbility" id="power" type="text" class="item-event ">
+            <span asp-validation-for="DemonstratedAbility" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">伸びた能力</label>
+            <input asp-for="SelfDevelopment" id="ability" type="text" class="item-event">
+            <span asp-validation-for="SelfDevelopment" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="question" for="">考えたこと</label>
+            <input asp-for="ThinkingAbility" id="thought" type="text" class="item-event">
+            <span asp-validation-for="ThinkingAbility" class="text-danger"></span>
+        </div>
+        @if (roles.Contains("Student") && Model.StatusId != 3)
+        {
+<input type="number" value="@isStudent" hidden id="checkIsStudent" />
+                <div class="item-btn">
+                    <button class="btn btn-primary" type="submit"><i class="fab fa-telegram-plane"></i>登録 </button>
+                    <div class="btn btn-danger cancel"> キャンセル</div>
+                </div>}
+    </form>
+</div>
+<div class="under">
+    <p>リプライ（応答）</p>
+</div>
+<hr>
+<div class="comment">
+    <div id="comment"></div>
+
+    <div class="form-comment">
+
+        <img src="/img/@avartar" class="avatar" alt="">
+        <div data-emojiarea data-type="unicode" data-global-picker="false">
+            <textarea placeholder="Enter text..." name="msg" id="mycomment" required style="display: none"></textarea>
+        </div>
+        <button type="submit" id="sent"><i class="fab fa-telegram-plane 2x"></i></button>
+        <button type="submit" id="cancel" hidden class="ml-2"><i class="fas fa-times 2x" style="color:red;"></i></button>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/update_eventcontent.js"></script>
+    <script src="~/js/aspnet/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Comment.js"></script>
+    <script src="~/js/emojihashtag/emojimentiony.js"></script>
+    <script src="~/js/emojihashtag/jquery.mentiony.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#mycomment').emojioneArea();
+            disableForm();
+        })
+        function disableForm() {
+            var isStudent = parseInt($('#checkIsStudent').val());
+            if (isStudent != 1) {
+                $('#list-event').prop("disabled", true);
+                $('#event').prop("disabled", true);
+                $('#action').prop("disabled", true);
+                $('#power').prop("disabled", true);
+                $('#ability').prop("disabled", true);
+                $('#thought').prop("disabled", true);
+            }
+        }
+    </script>
+}

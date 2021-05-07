@@ -1,0 +1,105 @@
+﻿@inject OJTDbContext context;
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+@{
+    string userId = userManager.GetUserId(User);
+    var user = await userManager.FindByIdAsync(userId);
+    var roles = await userManager.GetRolesAsync(user);
+    ViewData["Title"] = "Index";
+}
+<link href="~/lib/line-awesome/font-awesome-line-awesome/css/all.css" rel="stylesheet" />
+<link href="~/lib/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/js/select2/css/select2.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-suggest.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="~/css/StudentList.css">
+<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.6/css/dx.common.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.6/css/dx.light.css" />
+
+<div class="container-fluid main" style="position: relative;">
+    <div class="card-image shadow p-3 mb-5 bg-white">
+        <div class="row header">
+                <div class="left col-3 student-name">
+                    <input class="none-line" type="text" placeholder="学生の名前" name="" id="studentName" style="width:80%;">
+                </div>
+                <div class="left col-2 name">
+                    <select id="course" class="none-line">
+                        <option value="">クラス</option>
+                        @foreach (var item in context.Courses.OrderBy(e => e.CourseId).ToList())
+                        {
+                            <option value="@item.CourseId">@item.CourseName</option>
+                        }
+                    </select>
+                </div>
+                <div class="left col-3 event">
+                    <select id="event" class="none-line">
+                        <option value="">イベント</option>
+                        @foreach (var item in context.Events.ToList())
+                        {
+                            <option value="@item.EventId">@item.EventName</option>
+                        }
+                    </select>
+                </div>
+                <div id="hasdtag" class="left col-3">
+                    <div id="html-editor" tabindex="0" >
+                    </div>
+                    <label class="hashtag_label"> #ハッシュタグ</label>
+                </div>               
+                <div class="left  ">
+                    <a href="#" id="search" class="left"><i class="fa fa-search" style="color:dodgerblue" aria-hidden="true"></i></a>
+                </div>
+
+        </div>
+        <div class="row-border" style="width:90%;">
+            <select class="js-example-basic-multiple select2-hidden-accessible" name="AbilityIds" id="AbilityIds"
+                    multiple="multiple" style="width: 100%;" onchange="changeAbility()">
+                @foreach (var item in context.Abilities.ToList())
+                {
+                    <option value="@item.AbilityId" style="color:@item.Color">@item.AbilityName</option>
+                }
+            </select>
+        </div>
+
+        <div class="table-top">
+            <table id="myTable" class="table text-center">
+                <thead style="background-color:#260ab7;" class="text-light">
+                    <tr>
+                        @if (roles.Contains("Doctor") || roles.Contains("Teacher"))
+                        {
+                        <th scope="col" style="font-size: 20px; cursor:auto">学生コード</th>
+                        <th scope="col" style="font-size: 20px;">学生の名前</th>
+                        <th scope="col" style="font-size: 20px;width: 30%;">イベント</th>
+                        <th scope="col" style="font-size: 20px;width: 30%;">ハッシュタグ</th>
+                        <th scope="col" style="font-size: 20px;">トッラキング</th>
+                        }
+                        else
+                        {
+                            <th scope="col" style="font-size: 20px; cursor:auto">学生コード</th>
+                            <th scope="col" style="font-size: 20px;">学生の名前</th>
+                            <th scope="col" style="font-size: 20px;width: 30%;">イベント</th>
+                            <th scope="col" style="font-size: 20px;width: 30%;">ハッシュタグ</th>
+                        }
+                    </tr>
+                </thead>
+               <tbody>
+                </tbody>
+            </table>
+            <div class="table-bot">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://unpkg.com/devextreme-quill/dist/dx-quill.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/20.2.6/js/dx.all.js"></script>
+    <script src="~/js/StudentList.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/js/select2/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+    <script src="~/js/Comment.js"></script>
+}

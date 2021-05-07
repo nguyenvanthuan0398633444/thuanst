@@ -1,0 +1,94 @@
+﻿@{ ViewData["Title"] = "Details";
+                var studentId = ViewBag.StudentId as string;
+                var userCurrentId = ViewBag.UserId as string;
+                var roles = ViewBag.RolesUser as List<string>;
+                var student = ViewBag.Student as TeamNET.Models.Respone.Student.StudentView; 
+    }
+<link href="~/css/studentDetails.css" rel="stylesheet" />
+
+
+<div class="container col-xl-12 mb-4" style="max-width: 90%">
+    <input type="text" value="@studentId" hidden id="StudentId" />
+    <input type="text" value="@userCurrentId" hidden id="UserCurrentId" />
+    @if (!roles.Contains("Student"))
+    {
+<a class="btn btn-left mb-2" style="background-color: #ff8c1a;" asp-controller="Student" asp-action="Index"><i class="fas fa-arrow-left"></i> 戻る</a>}
+    <div class="card-image shadow p-3 mb-5 bg-white">
+        <div style="display:inline-flex;">
+            <span style="font-weight: 600">@student.StudentName</span>
+            <span style="padding-left: 20px; font-weight: 600">(@student.StudentCode)</span>
+            <span style="padding-left: 20px; font-weight: 600">
+                @student.CourseName
+            </span>
+        </div>
+        <hr />
+
+        <div class="row col-xl-12">
+            @if (roles.Contains("Student"))
+            {
+            <div class="col-xl-2 col-sm-12">
+                <a class="btn btn-create" asp-controller="EventContent" asp-action="Register">
+                    <i class="fa fa-plus-circle"></i> 新規作成
+                </a>
+            </div>
+            }
+            <div class="col-xl-2 col-sm-12">
+                <select id="Course" name="Course" class="custom-select m-2">
+                </select>
+            </div>
+            <div class="col-xl-2 col-sm-12">
+                <select id="Event" name="Event" class="custom-select m-2">
+                </select>
+            </div>
+            <div class="control-checkbox col-xl-4 col-sm-12 text-center">
+                <label class="item-checkbox-1">アクション</label>
+                <div class="item-checkbox">
+                    <input type="checkbox" name="statusEvent" value="1">
+                    <label>未確認</label>
+                </div>
+                <div class="item-checkbox">
+                    <input type="checkbox" name="statusEvent" value="2">
+                    <label>確認中</label>
+                </div>
+                <div class="item-checkbox">
+                    <input type="checkbox" name="statusEvent" value="3">
+                    <label>修了</label>
+                </div>
+            </div>
+            <div class="text-center col-xl-1 col-sm-12">
+                <a href='javascript: void(0)' onclick="student.seacherEvent()"><i class="fas fa-search" style="color:#00BFFF; font-size:40px" aria-hidden="true" title="Tìm kiếm"></i></a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    @if (TempData["Message"] != null)
+    {
+        <h6 id="studentDetailsMessage" class="alert alert-success">@TempData["Message"]</h6>
+    }
+        <table id="tbStudentDetails" class="table text-center">
+            <thead style="background-color:#260ab7;" class="text-light">
+                <tr>
+                    <th scope="col" style="font-size: 20px;cursor: auto">
+                        グレード
+                    </th>
+                    <th scope="col" style="font-size: 23px;">イベント</th>
+                    <th scope="col" style="font-size: 23px;">ステータス</th>
+                    <th scope="col" style="font-size: 23px;">通知</th>
+                    @if (roles.Contains("Student") || roles.Contains("Doctor"))
+                    {
+        <th scope="col" style="font-size: 23px;">
+            アクション
+                    </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+ </div>
+
+
+@section Scripts{
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
+    <script src="~/js/studentDetails.js" asp-append-version="true"></script>
+}

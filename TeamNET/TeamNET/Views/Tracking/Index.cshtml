@@ -1,0 +1,189 @@
+@{ ViewData["Title"] = "Index";
+    var studentId = ViewBag.studentId; }
+
+
+<link href="~/css/trackingChart.css" rel="stylesheet" />
+<input type="hidden" value="@studentId" id="studentId" />
+<a asp-controller="Student" asp-action="Index" class="btn btn-danger back" a style="margin-left:1em">
+    <i class="fas fa-arrow-left"></i>戻る
+</a>
+<div class="row header-chart" style="padding: 20px">
+    <!-- Student Information -->
+    <div class="col-md-3 col-sm-6 projec">
+        <div class="card" style="border-radius:20px">
+            <div class="capacity-box-header"></div>
+            <div class="col-md-12 card-body" id="cardStudent"></div>
+        </div>
+    </div>
+
+
+    <!--/. Student Information -->
+    <!-- Ability List -->
+    <div class="col-md-3 col-sm-6 chart-circle">
+        <div class="card" style="border-radius:20px; position: relative">
+            <div class="card-body">
+
+                <div class="capacity-eventtotal">
+                    <strong id="TotalAb" style="padding-right: 26px; text-shadow: 0 0 3px #58595B;"></strong>
+                </div>
+                <canvas id="doughnutChart" height="238" width="297"></canvas>
+            </div>
+        </div>
+    </div>
+    <!--/. Ability List  -->
+    <!-- Ability Information -->
+    <div class="col-md-6 note">
+        <div class="card" style="border-radius:20px">
+            <div class="card-body" style="height:320px">
+                <div style="margin-top:1rem;">
+                    <div class="col-md-12">
+                        <table class="table-borderless">
+                            <tbody>
+                                <tr id="ab1">
+                                </tr>
+                                <tr id="ab2">
+                                </tr>
+                                <tr id="ab3">
+                                </tr>
+                                <tr id="ab4">
+                                </tr>
+                                <tr id="ab5">
+                                </tr>
+                                <tr id="ab6">
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. Ability Information -->
+</div>
+<!-- Ability table -->
+<div class="col-xl-12" style="line-height: 1.0;">
+
+    <div class="card-chart" style="border-radius:20px">
+        <div class="modal fade" style="position: fixed;" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-scrollable modal-dialog-centered" role="document">
+                <div class="modal-content" style="height:200px; border-radius:20px">
+                    <div style="background: #2d9708" class="modal-header text-light">
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                            主体性
+                        </h5>
+                        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table id="eventTable" class="table table-hover">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="height:35rem;">
+            <!-- Toggle button -->
+            <div class="col-xl-12" style="padding-top: 10px; display: flex; justify-content: flex-end">
+                <div style="padding-top: 5px; padding-right:14px">
+                    テーブル
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="charttotable">
+                    <span class="slider round"></span>
+                </label>
+
+            </div>
+            <!-- Box body -->
+            <div class="box-body">
+                <!-- Chart -->
+                <div class="modal fade" style="position: fixed;" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-scrollable modal-dialog-centered" role="document">
+                        <div class="modal-content" style="height:200px; border-radius:20px">
+                            <div style="background: #2d9708" class="modal-header text-light">
+                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                    主体性
+                                </h5>
+                                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table id="eventTable2" class="table table-hover">
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-block" id="abchart">
+                    <canvas id="barChart" width="1800" height="430"></canvas>
+
+                </div>
+
+                <!-- Table -->
+                <div class="d-none" id="abtable">
+                    <table id="trackingTable" class="table table-hover table-bordered" style="font-size: 11px;">
+                        <thead>
+                            <tr style="background-color: #e6e2e2">
+                                <th style="text-align:center">能力 \ クラス</th>
+                                <th class="text-center">小 1</th>
+                                <th class="text-center">小 2</th>
+                                <th class="text-center">小 3</th>
+                                <th class="text-center">小 4</th>
+                                <th class="text-center">小 5</th>
+                                <th class="text-center">中 1</th>
+                                <th class="text-center">中 2</th>
+                                <th class="text-center">中 3</th>
+                                <th class="text-center">中 4</th>
+                                <th class="text-center">高 1</th>
+                                <th class="text-center">高 2</th>
+                                <th class="text-center">高 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <table id="trackingTable1" class="table table-hover table-bordered" style="font-size: 11px;">
+                        <thead>
+                            <tr style="background-color: #e6e2e2">
+                                <th style="text-align:center">能力 \ クラス</th>
+                                <th class="text-center">小 1</th>
+                                <th class="text-center">小 2</th>
+                                <th class="text-center">小 3</th>
+                                <th class="text-center">小 4</th>
+                                <th class="text-center">小 5</th>
+                                <th class="text-center">中 1</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <table id="trackingTable2" class="table table-hover table-bordered" style="font-size: 11px;">
+                        <thead>
+                            <tr style="background-color: #e6e2e2">
+                                <th style="text-align:center">能力 \ クラス</th>
+                                <th class="text-center">中 2</th>
+                                <th class="text-center">中 3</th>
+                                <th class="text-center">中 4</th>
+                                <th class="text-center">高 1</th>
+                                <th class="text-center">高 2</th>
+                                <th class="text-center">高 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+    <script src="~/js/trackingChart.js" asp-append-version="true"></script>
+}

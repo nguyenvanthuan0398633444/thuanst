@@ -1,0 +1,88 @@
+﻿.main {
+    font-family: "Times New Roman", Times, serif;
+    background-image: url(../images/login.jpg);
+    background-color: #cccccc;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    width: 400px;
+    height: 550px;
+    background-image: url(../images/home.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    box-shadow: 5px 5px 5px 5px rgba(82, 82, 82, 0.205);
+}
+    .login form {
+        height: 48%;
+        width: 100%;
+    }
+        .input-box {
+            border-bottom: 2px solid rgb(112, 112, 112);
+        }
+            .input-box input {
+                border: none;
+                width: 90%;
+            }
+            .eye {
+                position: absolute;
+                right: 75px;
+                background-color: #fff;
+                padding: 0 5px;
+                cursor: pointer;
+            }
+            #show {
+                display: none;
+            }
+            .pass {
+                width: 60%;
+                margin: auto;
+            }
+            .login-btn {
+                border: none;
+                background-color: rgb(19, 159, 224);
+                box-shadow: 5px 5px 5px rgba(82, 82, 82, 0.205);
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                color: #fff;
+                margin-top: 0.5rem;
+                outline: none;
+            }
+            button:focus, input:focus {
+                outline: none;
+            }
+            form label {
+                margin-top: 20px;
+                color: rgb(112, 112, 112);
+            }
+            i {
+                color: rgb(112, 112, 112);               
+            }
+@media ( max-height: 600px){
+    .main{
+        height: 100%;
+    }
+}
+@media ( max-width: 376px) {
+    .pass {
+        width: 70%;
+    }
+    .eye {
+        position: absolute;
+        right: 52px;
+    }
+}
